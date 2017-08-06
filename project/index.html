@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Contact App</title>
+  <link href=style.css rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="./js/controller.js"></script>
+</head>
+
+<body onload="loadContacts()">
+ <div class="container-fluid">
+  <div class="row">
+  <div class="page-header col-lg-12 col-md-12 col-sm-12">
+    <h2 style="margin:5px">Contact App</h2>
+  </div>
+
+   <input type="text" id="myInput" onkeyup="search()" placeholder="Search Contact..." data-type="accordion-search">
+  </div>
+
+<div>
+  <select name="filter" id="filter" onchange="applyfilter()" data-type="accordion-filter">
+        <option id="all" value="default">All</option>
+        <option  id="type1" value="type1">Type 1</option>
+        <option id="type2" value="type2">Type 2</option>
+    </select>
+</div>
+  <div class="row">
+  <div id="container" class="row col-lg-4">
+        <div id="myList">
+        </div>
+  </div>
+
+ <div id="container1" class="row col-lg-8">
+      <div><label>Email:</label><br>
+        <input class="inputbox" id="email" type="text">
+      </div>
+      <div><label>Phone:</label><br>
+        <input class="inputbox" id="phone" type="text">
+      </div>
+      <div><label>IM:</label><br>
+        <input  class="inputbox" id="im"  type="text">
+      </div>
+      <div><label>Address:</label><br>
+        <input class="inputbox" id="address" type="text">
+      </div>
+      <div><label>URL:</label><br>
+        <input  class="inputbox" id="url"  type="text">
+      </div>
+      <div><label>Other:</label><br>
+        <input class="inputbox" id="other"  type="text">
+      </div>
+
+ </div>
+  </div>
+
+
+</div>
+</body>
+
+</html>

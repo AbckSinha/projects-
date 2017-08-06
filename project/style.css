@@ -1,0 +1,44 @@
+body {
+
+}
+li{
+  list-style-type: none !important;
+  border-bottom: 1px solid black;
+  height:40px;
+}
+#myList{
+  border: 1px solid black;
+  margin-top:10px;
+  
+  margin-left:15px;
+   
+}
+.page-header{
+  text-align: center;
+  color: #c2d6d6;
+}
+#myInput{
+  width:30%;
+  margin-left:15px;
+  height:40px;
+}
+a:hover,a:focus{
+text-decoration: none !important;
+}
+#contactImage{
+  margin-right:15px !important;
+  height:40px;
+  width:40px;
+}
+.close{
+  font-size: 40px !important;
+}
+#filter {
+  margin-top:10px;
+}
+ #container1 {
+  margin-left:20px;
+} 
+.inputbox{
+  width:100%;
+}
