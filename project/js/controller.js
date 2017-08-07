@@ -4,8 +4,6 @@ function loadContacts() {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       this.contactsData = JSON.parse(this.responseText);
-
-      console.log("this.contactsData", this.contactsData);
        contactsClicked(JSON.stringify(this.contactsData.results[0]));
       for (var i = 0; i < this.contactsData.results.length; i++) {
         var anchor = document.createElement("a");
@@ -17,20 +15,14 @@ function loadContacts() {
         } else {
           anchor.setAttribute('data-attribute', 'type2');
         }
-
         var node = document.createElement("LI");
         anchor.appendChild(node);
-
         var span = document.createElement("SPAN");
         var txt = document.createTextNode("\u00D7");
         span.setAttribute('onclick', 'deleteContacts(this.id)');
         span.className = "close";
         span.appendChild(txt);
-        node.appendChild(span)
-
-
-
-
+        node.appendChild(span);
         var oImg = document.createElement("img");
         oImg.setAttribute('src', this.contactsData.results[i].picture.thumbnail);
         oImg.setAttribute('alt', 'na');
@@ -38,18 +30,21 @@ function loadContacts() {
         node.appendChild(oImg);
         var textnode = document.createTextNode(this.contactsData.results[i].name.first + " " + this.contactsData.results[i].name.last);
         node.appendChild(textnode);
+        var array = [];
+        array.push(textnode);       
         document.getElementById("myList").appendChild(anchor);
       }
+      array.sort();
     }
   }
   xhttp.open("GET", "https://randomuser.me/api/?results=10", true);
   xhttp.send();
+  
  
 }
-
+// poulating the values in details fields
 function contactsClicked(name) {
   var obj = JSON.parse(name);
-  console.log(obj.email);
   document.getElementById("email").value = obj.email;
   document.getElementById("phone").value = obj.cell;
   document.getElementById("im").value = obj.email;
@@ -72,7 +67,7 @@ function deleteContacts(name) {
 }
 
 
-
+// search functinality 
 function search() {
   var input, filter, ul, li, a, i;
   input = document.getElementById('myInput');
@@ -90,7 +85,7 @@ function search() {
   }
 }
 
-
+// filtering the items based on type
 function applyfilter() {
   var e = document.getElementById("filter");
   var selected = e.options[e.selectedIndex].value;
@@ -99,22 +94,14 @@ function applyfilter() {
   for (var i = 0; i < a.length; i++) {
     a[i].style.display = 'block';
     if (selected != "default") {
-      if (a[i].getAttribute('data-attribute') != selected) { //dekhna hai
+      if (a[i].getAttribute('data-attribute') != selected) { 
         if (a[i].style.display == "block")
           a[i].style.display = 'none';
       }
     }
   }
 }
-// // Add a "checked" symbol when clicking on a list item
-// var list = document.querySelector('ul');
-// list.addEventListener('click', function(ev) {
-//   if (ev.target.tagName === 'LI') {
-//     ev.target.classList.toggle('checked');
-//   }
-// }, false);
-
-// // Create a new list item when clicking on the "Add" button
+// funtionality to be implemented
 function add() {
   var a = document.createElement("a");
   var inputValue = document.getElementById("myInput").value;
@@ -126,17 +113,24 @@ function add() {
     document.getElementById("myList").appendChild(a);
   }
   document.getElementById("myInput").value = "";
-
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
   span.className = "close";
   span.appendChild(txt);
-  li.appendChild(span);
-
+  a.appendChild(span);
   for (i = 0; i < close.length; i++) {
     close[i].onclick = function() {
       var div = this.parentElement;
       div.style.display = "none";
     }
   }
+}
+//to reset the fields
+function reset(){
+   document.getElementById("email").value = "";
+  document.getElementById("phone").value = "";
+  document.getElementById("im").value = "";
+  document.getElementById("address").value = "";
+  document.getElementById("url").value = "";
+  document.getElementById("other").value = "";
 }
